@@ -1,0 +1,6 @@
+framework module Pods_VersaPlayerAdsExtension_Example {
+  umbrella header "Pods-VersaPlayerAdsExtension_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
