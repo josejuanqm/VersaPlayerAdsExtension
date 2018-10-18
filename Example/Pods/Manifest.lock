@@ -5,13 +5,6 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - GoogleAds-IMA-iOS-SDK (3.7.3)
-  - Nimble (7.0.3)
-  - Nimble-Snapshots (6.3.0):
-    - Nimble-Snapshots/Core (= 6.3.0)
-  - Nimble-Snapshots/Core (6.3.0):
-    - FBSnapshotTestCase (~> 2.0)
-    - Nimble (~> 7.0)
-  - Quick (1.2.0)
   - VersaPlayer (0.1.0)
   - VersaPlayerAdsExtension (0.1.0):
     - GoogleAds-IMA-iOS-SDK
@@ -20,9 +13,6 @@ PODS:
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
   - GoogleAds-IMA-iOS-SDK
-  - Nimble (~> 7.0.2)
-  - Nimble-Snapshots (~> 6.3.0)
-  - Quick (~> 1.2.0)
   - VersaPlayer
   - VersaPlayerAdsExtension (from `../`)
 
@@ -30,9 +20,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FBSnapshotTestCase
     - GoogleAds-IMA-iOS-SDK
-    - Nimble
-    - Nimble-Snapshots
-    - Quick
     - VersaPlayer
 
 EXTERNAL SOURCES:
@@ -42,12 +29,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   GoogleAds-IMA-iOS-SDK: 6dc764910309dcc982d6eb8b7de19d3cf94a6857
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   VersaPlayer: f31313a03e3d243959df88fa726754180ea68dac
   VersaPlayerAdsExtension: 88bf285687e4069915e5228ac75fad1c8aa44d11
 
-PODFILE CHECKSUM: 68a1904d0d15ee9e042f2fb22df27705d5a340de
+PODFILE CHECKSUM: 4421772df42864a0ee29f9f0ad1ed63a0f1a6d75
 
 COCOAPODS: 1.5.3

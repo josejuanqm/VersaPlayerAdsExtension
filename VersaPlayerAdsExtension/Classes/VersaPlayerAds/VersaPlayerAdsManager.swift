@@ -18,6 +18,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var pipProxy: IMAPictureInPictureProxy?
     public var adsLoader: IMAAdsLoader?
     public var adsManager: IMAAdsManager?
+    public var displayDelegate: VersaPlayerAdsManagerDisplayDelegate?
     public var tag: String!
     public var showingAds: Bool = false
     public var preRollShown: Bool = false
@@ -74,6 +75,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsLoader(_ loader: IMAAdsLoader!, adsLoadedWith adsLoadedData: IMAAdsLoadedData!) {
+        displayDelegate?.ads(loader: loader, didLoad: adsLoadedData)
         adsManager = adsLoadedData.adsManager
         adsManager!.delegate = self
         let adsRenderingSettings = IMAAdsRenderingSettings()
@@ -83,10 +85,12 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsLoader(_ loader: IMAAdsLoader!, failedWith adErrorData: IMAAdLoadingErrorData!) {
+        displayDelegate?.ads(loader: loader, failedWith: adErrorData)
         print(adErrorData.adError.message)
     }
 
     public func setUpContentPlayer() {
+        displayDelegate?.willSetUpContentPlayer()
         contentPlayhead = IMAAVPlayerContentPlayhead(avPlayer: player.player)
         NotificationCenter.default.addObserver(
             self,
@@ -101,6 +105,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
             if obj == player.player.currentItem {
                 adsLoader?.contentComplete()
             }else if showingAds {
+                displayDelegate?.adsDidFinishPlaying()
                 showingAds = false
                 behaviour.didEndAd()
             }
@@ -108,6 +113,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
+        displayDelegate?.ads(manager: adsManager, didReceive: event)
         if (event.type == IMAAdEventType.LOADED) {
             showingAds = true
             behaviour.willShowAdsFor(player: player.player)
@@ -116,14 +122,17 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
+        displayDelegate?.ads(manager: adsManager, didReceive: error)
         player.play()
     }
     
     public func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!) {
+        displayDelegate?.adsManagerDidRequestContentPause(adsManager)
         player.pause()
     }
     
     public func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!) {
+        displayDelegate?.adsManagerDidRequestContentResume(adsManager)
         if !player.isPlaying {
             player.play()
         }
