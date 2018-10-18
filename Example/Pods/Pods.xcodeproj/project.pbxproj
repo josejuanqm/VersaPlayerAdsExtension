@@ -123,13 +123,13 @@
 		0B8F23C2F1612FA96DBD830892876E5C /* VPlayerItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VPlayerItem.swift; path = VersaPlayer/Classes/Core/Player/VPlayerItem.swift; sourceTree = "<group>"; };
 		0BD265C4993F676B3487D56E682AEFB8 /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
 		0D3A7AD38543183CC3DFB7898B69B225 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
-		17E1892881A64D725B3633ACC45F05BD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		17E1892881A64D725B3633ACC45F05BD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1C2497ADDA0C3A23B8CCE8525B8CD87D /* VersaPlayerAdsExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VersaPlayerAdsExtension-prefix.pch"; sourceTree = "<group>"; };
 		1D3DD6ED7A199AA9B1DAEF1975F956AB /* Pods-VersaPlayerAdsExtension_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VersaPlayerAdsExtension_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		1F82626D77423DE21B5D1DB6B20505CD /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
 		2A4BFB0754FA0A1045E8799B9F49BD26 /* Pods-VersaPlayerAdsExtension_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VersaPlayerAdsExtension_Example-resources.sh"; sourceTree = "<group>"; };
 		2D3132F160150677EB223E9B43F60731 /* VersaStatefulButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VersaStatefulButton.swift; path = VersaPlayer/Classes/VersaPlayerControls/Controls/VersaStatefulButton.swift; sourceTree = "<group>"; };
-		314D00AD27D5E49AF25CEA782922E01A /* VersaPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VersaPlayer.framework; path = VersaPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		314D00AD27D5E49AF25CEA782922E01A /* VersaPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VersaPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		347F5E321864DF78E02410D8B0479D6E /* VersaPlayerAdManagerBehaviour.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VersaPlayerAdManagerBehaviour.swift; sourceTree = "<group>"; };
 		3577B57FE352C44EBB247CB1EA5DF0D7 /* Pods-VersaPlayerAdsExtension_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VersaPlayerAdsExtension_Tests-dummy.m"; sourceTree = "<group>"; };
 		37FCAD97FEF41868918A7EAF93CB9206 /* Pods-VersaPlayerAdsExtension_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VersaPlayerAdsExtension_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -146,27 +146,27 @@
 		56FD11F35B700598B5249F2F72E885BF /* VersaPlayerControls.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VersaPlayerControls.swift; path = VersaPlayer/Classes/VersaPlayerControls/VersaPlayerControls.swift; sourceTree = "<group>"; };
 		5DF0C50CA85E951109E908AC93F10328 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		61C458D4660352ADDB235BDC902CB3D3 /* VPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VPlayer.swift; path = VersaPlayer/Classes/Core/Player/VPlayer.swift; sourceTree = "<group>"; };
-		63265F6E0E5F9B4B063398880B68E8C6 /* VersaPlayerAdsExtension.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = VersaPlayerAdsExtension.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		63265F6E0E5F9B4B063398880B68E8C6 /* VersaPlayerAdsExtension.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = VersaPlayerAdsExtension.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		688260D4813BC21C8F34A120947B2FC9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6923D9F79F8839F82C15B7B9985BB17C /* Pods-VersaPlayerAdsExtension_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VersaPlayerAdsExtension_Example-dummy.m"; sourceTree = "<group>"; };
 		6AFD753F93A801D7118C5B47F1223760 /* VPlayerRenderingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VPlayerRenderingView.swift; path = VersaPlayer/Classes/Core/Rendering/VPlayerRenderingView.swift; sourceTree = "<group>"; };
-		70360521CE280D31F06687BC7A1B9753 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		70360521CE280D31F06687BC7A1B9753 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		71B45BA527BF8CC98A8BFA9F523953E2 /* VersaPlayerPlaybackDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VersaPlayerPlaybackDelegate.swift; path = VersaPlayer/Classes/Core/Protocols/VersaPlayerPlaybackDelegate.swift; sourceTree = "<group>"; };
 		735E9A88B7FC043ED06C07959649870B /* VersaPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VersaPlayer-prefix.pch"; sourceTree = "<group>"; };
-		73D555947E7DD7149DBE56531647FA10 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D555947E7DD7149DBE56531647FA10 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A0B66B7885FE21C174E81DDAFB3C8A /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
-		77B54ADF80EEC7138BE9694910491186 /* Pods_VersaPlayerAdsExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_VersaPlayerAdsExtension_Example.framework; path = "Pods-VersaPlayerAdsExtension_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77B54ADF80EEC7138BE9694910491186 /* Pods_VersaPlayerAdsExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VersaPlayerAdsExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78161BB3519672069C00D8712042627A /* VersaPlayerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VersaPlayerExtension.swift; path = VersaPlayer/Classes/Core/Protocols/VersaPlayerExtension.swift; sourceTree = "<group>"; };
 		7A4849A16424D6A35F18DBB4157565BD /* VersaPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VersaPlayer-dummy.m"; sourceTree = "<group>"; };
 		7D62DB3B9E0D0894992F5A7C41FB303F /* Pods-VersaPlayerAdsExtension_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-VersaPlayerAdsExtension_Example.modulemap"; sourceTree = "<group>"; };
 		7E57A333C0713C6F292C4A8FB3C4365D /* Pods-VersaPlayerAdsExtension_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VersaPlayerAdsExtension_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7EB8689DF5054BE6F145817DEC16300C /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		82A3439B1DF6F21750A950CEEDF950B7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8BA9212B4EF5A283433D7CA8CA9D1C07 /* VersaPlayerAdsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VersaPlayerAdsExtension.framework; path = VersaPlayerAdsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BA9212B4EF5A283433D7CA8CA9D1C07 /* VersaPlayerAdsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VersaPlayerAdsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC03F21B364DCDE412F0D4AF0D48AE2 /* VersaPlayerAdsExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VersaPlayerAdsExtension.xcconfig; sourceTree = "<group>"; };
 		9132E5DD7FAC5AA8670022DD90A49C01 /* Pods-VersaPlayerAdsExtension_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VersaPlayerAdsExtension_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		921AA2494BD8919E5A293E02117FB9F4 /* VersaPlayerAdExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VersaPlayerAdExtension.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A8D82475C275430EC0245D42B34A75C /* VersaPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VersaPlayer.swift; path = VersaPlayer/Classes/VersaPlayer.swift; sourceTree = "<group>"; };
 		9C9C198A617931482974DDD98A0F14B8 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
 		9D0E091446DB80BD951D33B1A64FC698 /* Pods-VersaPlayerAdsExtension_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VersaPlayerAdsExtension_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		ABF3D664BD8F69785DF24A2540DC9F38 /* VPlayerLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VPlayerLayer.swift; path = VersaPlayer/Classes/Core/Rendering/VPlayerLayer.swift; sourceTree = "<group>"; };
 		AC3A5202E569F897E863D6D000A77B58 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
 		B45ED6A6D5CFE3D323F57CC7B825EAE9 /* Pods-VersaPlayerAdsExtension_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VersaPlayerAdsExtension_Example-frameworks.sh"; sourceTree = "<group>"; };
-		B46C36C19360215F4B179009DBBAAB07 /* Pods_VersaPlayerAdsExtension_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_VersaPlayerAdsExtension_Tests.framework; path = "Pods-VersaPlayerAdsExtension_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46C36C19360215F4B179009DBBAAB07 /* Pods_VersaPlayerAdsExtension_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VersaPlayerAdsExtension_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F66DF900746B5C526D0643350CD657 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
 		B524F0CDD9B1AAD1781CC161DEB96C24 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		B765B09122D21F30910E7752B425E672 /* GoogleInteractiveMediaAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInteractiveMediaAds.framework; sourceTree = "<group>"; };
@@ -274,7 +274,6 @@
 			children = (
 				B6EA296F70E5E3EBDAE3F8F497CF55D2 /* Frameworks */,
 			);
-			name = "GoogleAds-IMA-iOS-SDK";
 			path = "GoogleAds-IMA-iOS-SDK";
 			sourceTree = "<group>";
 		};
@@ -285,7 +284,6 @@
 				557CFC44F4810ABD6A2FDD5A65C5D959 /* Support Files */,
 				6049B0027770E6D7ABE6324E85BFC485 /* SwiftSupport */,
 			);
-			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -345,7 +343,6 @@
 				6AFD753F93A801D7118C5B47F1223760 /* VPlayerRenderingView.swift */,
 				375DDD9E110A26F26546A576053EA7CF /* Support Files */,
 			);
-			name = VersaPlayer;
 			path = VersaPlayer;
 			sourceTree = "<group>";
 		};
@@ -445,8 +442,8 @@
 				C8EEA3C20081E5F9DE48918EBD736601 /* VersaPlayerAdsManager.swift */,
 				C4B264454F3B43BB30FE34B31B106EE0 /* Behaviour */,
 				CA162B5AA814900F9179E34DF61E8013 /* Extensions */,
-				BF9ED46B695B87C97573BBF605917B7D /* Pod */,
 				8960CD1B2E3B3529E5513AB823E615F1 /* Protocols */,
+				BF9ED46B695B87C97573BBF605917B7D /* Pod */,
 				D355A824114ABBD807033F1FC8887779 /* Support Files */,
 			);
 			name = VersaPlayerAdsExtension;

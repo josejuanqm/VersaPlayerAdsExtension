@@ -13,8 +13,8 @@ public protocol VersaPlayerAdsManagerDisplayDelegate {
     func ads(loader: IMAAdsLoader!, failedWith data: IMAAdLoadingErrorData!)
     func willSetUpContentPlayer()
     func adsDidFinishPlaying()
-    func ads(manager: IMAAdsManager!, didReceive event: IMAAdEvent!)
-    func ads(manager: IMAAdsManager!, didReceive error: IMAAdError!)
+    func ads(manager: IMAAdsManager!, didReceiveEvent event: IMAAdEvent!)
+    func ads(manager: IMAAdsManager!, didReceiveError error: IMAAdError!)
     func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!)
     func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!)
 }
