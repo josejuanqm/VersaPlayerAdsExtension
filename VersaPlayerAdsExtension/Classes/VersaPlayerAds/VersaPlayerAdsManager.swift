@@ -113,7 +113,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
-        displayDelegate?.ads(manager: adsManager, didReceive: event)
+        displayDelegate?.ads(manager: adsManager, didReceiveEvent: event)
         if (event.type == IMAAdEventType.LOADED) {
             showingAds = true
             behaviour.willShowAdsFor(player: player.player)
@@ -122,7 +122,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
-        displayDelegate?.ads(manager: adsManager, didReceive: error)
+        displayDelegate?.ads(manager: adsManager, didReceiveError: error)
         player.play()
     }
     
