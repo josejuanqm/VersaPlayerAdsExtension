@@ -5,6 +5,14 @@
 [![License](https://img.shields.io/cocoapods/l/VersaPlayerAdsExtension.svg?style=flat)](https://cocoapods.org/pods/VersaPlayerAdsExtension)
 [![Platform](https://img.shields.io/cocoapods/p/VersaPlayerAdsExtension.svg?style=flat)](https://cocoapods.org/pods/VersaPlayerAdsExtension)
 
+## Usage
+
+<div>
+  <p align="center">
+    <img src="https://github.com/josejuanqm/VersaPlayerAdsExtension/blob/master/sample.png" />
+  </p>
+</div>
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
