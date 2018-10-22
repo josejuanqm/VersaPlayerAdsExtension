@@ -23,11 +23,12 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var showingAds: Bool = false
     public var adsRenderingSettings: IMAAdsRenderingSettings!
     
-    public init(with player: VersaPlayer, presentingIn controller: UIViewController) {
+    public init(with player: VersaPlayer, presentingIn controller: UIViewController, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
         super.init(with: player)
         self.behaviour = VersaPlayerAdManagerBehaviour()
         self.behaviour.handler = self
         self.controller = controller
+        self.displayDelegate = delegate
         setUpContentPlayer()
         setUpAdsLoader()
         player.addObserver(self, forKeyPath: "isPipModeEnabled", options: NSKeyValueObservingOptions.new, context: nil)
@@ -43,7 +44,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func setUpAdsLoader() {
         let settings = IMASettings.init()
-        settings.autoPlayAdBreaks = displayDelegate?.shouldUseDynamicInsertion() ?? true
+        settings.autoPlayAdBreaks = displayDelegate?.shouldAutoPlayAds() ?? true
         adsLoader = IMAAdsLoader(settings: settings)
         adsLoader!.delegate = self
     }
@@ -113,7 +114,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
         displayDelegate?.ads(manager: adsManager, didReceiveEvent: event)
-        if displayDelegate?.shouldUseDynamicInsertion() ?? true {
+        if displayDelegate?.shouldAutoPlayAds() ?? true {
             if (event.type == IMAAdEventType.LOADED) {
                 showingAds = true
                 behaviour.willShowAdsFor(player: player.player)
