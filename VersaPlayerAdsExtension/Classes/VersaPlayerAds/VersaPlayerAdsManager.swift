@@ -43,6 +43,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func setUpAdsLoader() {
         let settings = IMASettings.init()
+        settings.autoPlayAdBreaks = displayDelegate?.shouldUseDynamicInsertion() ?? true
         adsLoader = IMAAdsLoader(settings: settings)
         adsLoader!.delegate = self
     }
@@ -112,10 +113,12 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
         displayDelegate?.ads(manager: adsManager, didReceiveEvent: event)
-        if (event.type == IMAAdEventType.LOADED) {
-            showingAds = true
-            behaviour.willShowAdsFor(player: player.player)
-            adsManager.start()
+        if displayDelegate?.shouldUseDynamicInsertion() ?? true {
+            if (event.type == IMAAdEventType.LOADED) {
+                showingAds = true
+                behaviour.willShowAdsFor(player: player.player)
+                adsManager.start()
+            }
         }
     }
     

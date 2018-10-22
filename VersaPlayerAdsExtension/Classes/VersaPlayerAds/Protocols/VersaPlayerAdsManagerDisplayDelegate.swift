@@ -19,4 +19,5 @@ public protocol VersaPlayerAdsManagerDisplayDelegate {
     func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!)
     func companionSlots(for manager: IMAAdsManager) -> [IMACompanionAdSlot]
     func renderingSettings(for manager: IMAAdsManager) -> IMAAdsRenderingSettings
+    func shouldUseDynamicInsertion() -> Bool
 }
