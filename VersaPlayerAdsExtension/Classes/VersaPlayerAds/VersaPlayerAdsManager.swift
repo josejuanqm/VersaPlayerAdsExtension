@@ -21,6 +21,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var displayDelegate: VersaPlayerAdsManagerDisplayDelegate?
     public var tag: String!
     public var showingAds: Bool = false
+    public var adsRenderingSettings: IMAAdsRenderingSettings!
     
     public init(with player: VersaPlayer, presentingIn controller: UIViewController) {
         super.init(with: player)
@@ -41,7 +42,8 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func setUpAdsLoader() {
-        adsLoader = IMAAdsLoader(settings: nil)
+        let settings = IMASettings.init()
+        adsLoader = IMAAdsLoader(settings: settings)
         adsLoader!.delegate = self
     }
     
@@ -75,7 +77,8 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
         displayDelegate?.ads(loader: loader, didLoad: adsLoadedData)
         adsManager = adsLoadedData.adsManager
         adsManager!.delegate = self
-        let adsRenderingSettings = IMAAdsRenderingSettings()
+        adsRenderingSettings = IMAAdsRenderingSettings()
+        adsRenderingSettings.disableUi = true
         adsRenderingSettings.webOpenerPresentingController = nil
         
         adsManager!.initialize(with: adsRenderingSettings)
