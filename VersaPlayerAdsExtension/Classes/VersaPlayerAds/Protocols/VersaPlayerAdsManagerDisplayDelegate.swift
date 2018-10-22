@@ -17,4 +17,5 @@ public protocol VersaPlayerAdsManagerDisplayDelegate {
     func ads(manager: IMAAdsManager!, didReceiveError error: IMAAdError!)
     func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!)
     func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!)
+    func companionSlots(for manager: IMAAdsManager) -> [IMACompanionAdSlot]
 }

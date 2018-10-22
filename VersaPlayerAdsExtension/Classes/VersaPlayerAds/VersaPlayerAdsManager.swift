@@ -21,15 +21,14 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var displayDelegate: VersaPlayerAdsManagerDisplayDelegate?
     public var tag: String!
     public var showingAds: Bool = false
-    public var preRollShown: Bool = false
-    public var postRollShown: Bool = false
-    public var secondsShown: [Double] = []
+    public var companionSlots: [IMACompanionAdSlot] = []
     
-    public init(with player: VersaPlayer, presentingIn controller: UIViewController) {
+    public init(with player: VersaPlayer, presentingIn controller: UIViewController, using companionSlots: [IMACompanionAdSlot] = []) {
         super.init(with: player)
         self.behaviour = VersaPlayerAdManagerBehaviour()
         self.behaviour.handler = self
         self.controller = controller
+        self.companionSlots = companionSlots
         setUpContentPlayer()
         setUpAdsLoader()
         player.addObserver(self, forKeyPath: "isPipModeEnabled", options: NSKeyValueObservingOptions.new, context: nil)
@@ -49,7 +48,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func requestAds(using pip: Bool = false) {
-        let adDisplayContainer = IMAAdDisplayContainer(adContainer: player.renderingView, companionSlots: nil)
+        let adDisplayContainer = IMAAdDisplayContainer(adContainer: player.renderingView, companionSlots: companionSlots)
         var request: IMAAdsRequest
         if !pip {
             request = IMAAdsRequest(
