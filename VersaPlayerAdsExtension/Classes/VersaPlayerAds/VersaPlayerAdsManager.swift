@@ -77,9 +77,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
         displayDelegate?.ads(loader: loader, didLoad: adsLoadedData)
         adsManager = adsLoadedData.adsManager
         adsManager!.delegate = self
-        adsRenderingSettings = IMAAdsRenderingSettings()
-        adsRenderingSettings.disableUi = true
-        adsRenderingSettings.webOpenerPresentingController = nil
+        adsRenderingSettings = displayDelegate?.renderingSettings(for: adsManager!)
         
         adsManager!.initialize(with: adsRenderingSettings)
     }
