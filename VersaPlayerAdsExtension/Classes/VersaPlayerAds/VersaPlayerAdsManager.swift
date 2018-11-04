@@ -23,7 +23,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var showingAds: Bool = false
     public var adsRenderingSettings: IMAAdsRenderingSettings!
     
-    public init(with player: VersaPlayer, presentingIn controller: UIViewController, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
+    public init(with player: VersaPlayerView, presentingIn controller: UIViewController, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
         super.init(with: player)
         self.behaviour = VersaPlayerAdManagerBehaviour()
         self.behaviour.handler = self

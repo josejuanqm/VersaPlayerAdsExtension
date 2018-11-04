@@ -10,5 +10,5 @@ import Foundation
 import VersaPlayer
 
 public protocol VersaPlayerAdManagerBehaviourDelegate {
-    func willShowAdsFor(player: VPlayer)
+    func willShowAdsFor(player: VersaPlayer)
 }

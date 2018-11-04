@@ -23,7 +23,7 @@ public class VersaPlayerAdManagerBehaviour {
         
     }
     
-    public func willShowAdsFor(player: VPlayer) {
+    public func willShowAdsFor(player: VersaPlayer) {
         self.handler.player.controls?.controlsCoordinator.isHidden = true
         delegate?.willShowAdsFor(player: player)
     }

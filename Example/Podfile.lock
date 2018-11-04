@@ -5,8 +5,8 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - GoogleAds-IMA-iOS-SDK (3.7.3)
-  - VersaPlayer (0.1.0)
-  - VersaPlayerAdsExtension (0.1.0):
+  - VersaPlayer (1.2.1)
+  - VersaPlayerAdsExtension (0.4.2):
     - GoogleAds-IMA-iOS-SDK
     - VersaPlayer
 
@@ -29,8 +29,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   GoogleAds-IMA-iOS-SDK: 6dc764910309dcc982d6eb8b7de19d3cf94a6857
-  VersaPlayer: f31313a03e3d243959df88fa726754180ea68dac
-  VersaPlayerAdsExtension: 88bf285687e4069915e5228ac75fad1c8aa44d11
+  VersaPlayer: ae33859d21559ff631b0dfb159f212af70631ef2
+  VersaPlayerAdsExtension: b1a11b51db5acb21635a9bf6d31a5493ec4918b3
 
 PODFILE CHECKSUM: 4421772df42864a0ee29f9f0ad1ed63a0f1a6d75
 

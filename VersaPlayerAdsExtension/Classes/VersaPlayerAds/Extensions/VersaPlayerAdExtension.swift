@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import VersaPlayer
 
-public extension VersaPlayer {
+public extension VersaPlayerView {
     
     public var adsManager: VersaPlayerAdsManager? {
         let adsManager = getExtension(with: "adsManager") as? VersaPlayerAdsManager

@@ -12,7 +12,7 @@ import VersaPlayerAdsExtension
 
 class ViewController: UIViewController, VersaPlayerAdManagerBehaviourDelegate {
     
-    @IBOutlet weak var player: VersaPlayer!
+    @IBOutlet weak var player: VersaPlayerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class ViewController: UIViewController, VersaPlayerAdManagerBehaviourDelegate {
         player.useAds(manager: VersaPlayerAdsManager.init(with: player, presentingIn: self))
         player.adsManager?.behaviour.delegate = self
         if let url = URL.init(string: "http://rmcdn.2mdn.net/Demo/html5/output.mp4") {
-            let item = VPlayerItem(url: url)
+            let item = VersaPlayerItem(url: url)
             player.set(item: item)
         }
         
@@ -28,7 +28,7 @@ class ViewController: UIViewController, VersaPlayerAdManagerBehaviourDelegate {
         player.adsManager?.requestAds()
     }
     
-    func willShowAdsFor(player: VPlayer) {
+    func willShowAdsFor(player: VersaPlayer) {
         
     }
 
