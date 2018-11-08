@@ -8,7 +8,7 @@ Copyright 2015 Google, Inc. All rights reserved.
 
 ## VersaPlayer
 
-Copyright (c) 2018 jose.juan.qm@gmail.com <jose.quintero@fox.com>
+Copyright (c) 2018 jose.juan.qm@gmail.com <jose.juan.qm@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

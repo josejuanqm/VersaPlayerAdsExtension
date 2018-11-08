@@ -283,7 +283,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VersaPlayerAdsExtension_Example/Pods-VersaPlayerAdsExtension_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VersaPlayerAdsExtension_Example/Pods-VersaPlayerAdsExtension_Example-frameworks.sh",
 				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
 				"${BUILT_PRODUCTS_DIR}/VersaPlayer/VersaPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/VersaPlayerAdsExtension/VersaPlayerAdsExtension.framework",
@@ -296,7 +296,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VersaPlayerAdsExtension_Example/Pods-VersaPlayerAdsExtension_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VersaPlayerAdsExtension_Example/Pods-VersaPlayerAdsExtension_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BA24E07B0506C095E3F06889 /* [CP] Check Pods Manifest.lock */ = {
@@ -323,7 +323,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VersaPlayerAdsExtension_Tests/Pods-VersaPlayerAdsExtension_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VersaPlayerAdsExtension_Tests/Pods-VersaPlayerAdsExtension_Tests-frameworks.sh",
 				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
 				"${BUILT_PRODUCTS_DIR}/VersaPlayer/VersaPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
@@ -336,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VersaPlayerAdsExtension_Tests/Pods-VersaPlayerAdsExtension_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VersaPlayerAdsExtension_Tests/Pods-VersaPlayerAdsExtension_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
