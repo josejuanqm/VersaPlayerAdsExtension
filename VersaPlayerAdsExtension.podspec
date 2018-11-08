@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VersaPlayerAdsExtension'
-  s.version          = '0.5.1'
+  s.version          = '1.0.1'
   s.summary          = 'VersaPlayer Extension to enable video ads.'
   s.description      = 'VersaPlayer Extension to enable video ads functionality.'
   s.homepage         = 'https://github.com/josejuanqm/VersaPlayerAdsExtension'
