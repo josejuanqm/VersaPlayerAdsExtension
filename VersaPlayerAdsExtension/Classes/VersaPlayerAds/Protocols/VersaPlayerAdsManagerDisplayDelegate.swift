@@ -8,7 +8,7 @@
 import Foundation
 import GoogleInteractiveMediaAds
 
-public protocol VersaPlayerAdsManagerDisplayDelegate {
+public protocol VersaPlayerAdsManagerDisplayDelegate: AnyObject {
     func ads(loader: IMAAdsLoader!, didLoad data: IMAAdsLoadedData!)
     func ads(loader: IMAAdsLoader!, failedWith data: IMAAdLoadingErrorData!)
     func willSetUpContentPlayer()

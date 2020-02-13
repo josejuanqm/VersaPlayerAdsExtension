@@ -18,7 +18,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var pipProxy: IMAPictureInPictureProxy?
     public var adsLoader: IMAAdsLoader?
     public var adsManager: IMAAdsManager?
-    public var displayDelegate: VersaPlayerAdsManagerDisplayDelegate?
+    public weak var displayDelegate: VersaPlayerAdsManagerDisplayDelegate?
     public var tag: String!
     public var showingAds: Bool = false
     public var adsRenderingSettings: IMAAdsRenderingSettings!
