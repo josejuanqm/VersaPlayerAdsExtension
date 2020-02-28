@@ -41,11 +41,18 @@ extern NSString *const kIMASubtitleTTML;
  *  Called when the IMAAVPlayerVideoDisplay will load a stream for playback. Allows the publisher to
  *  register the AVURLAsset for Fairplay content protection before playback starts.
  *
- *  @param avPlayerVideoDisplay the IMAVPlayerVideoDisplay that will load the AVURLAsset.
- *  @param avUrlAsset           the AVURLAsset representing the stream to be loaded.
+ *  @param playerVideoDisplay the IMAVPlayerVideoDisplay that will load the AVURLAsset.
+ *  @param URLAsset           the AVURLAsset representing the stream to be loaded.
  */
-- (void)avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay
-         willLoadStreamAsset:(AVURLAsset *)avUrlAsset;
+- (void)playerVideoDisplay:(IMAAVPlayerVideoDisplay *)playerVideoDisplay
+       willLoadStreamAsset:(AVURLAsset *)URLAsset;
+
+/**
+ * Called when the <code>IMAAVPlayerVideoDisplay</code> has at least partially loaded media for
+ * playback and the player item is loaded. Only called for dynamic ad insertion.
+ */
+- (void)playerVideoDisplay:(IMAAVPlayerVideoDisplay *)playerVideoDisplay
+         didLoadPlayerItem:(AVPlayerItem *)playerItem;
 
 @end
 
@@ -59,18 +66,20 @@ extern NSString *const kIMASubtitleTTML;
 /**
  *  The content player used for both content and ad video playback.
  */
-@property(nonatomic, strong, readonly) AVPlayer *player;
+@property(nonatomic, strong, readonly) AVPlayer *player DEPRECATED_MSG_ATTRIBUTE(
+    "Use the player passed into initWithAVPlayer: instead.");
 
 /**
  *  The player item that will be played by the player. Access to the player item is provided
- *  so the item can be seeked before it is ready to play.
+ *  so the item can be seeked, to select subtitles, and to inspect media attributes.
  */
-@property(nonatomic, strong, readonly) AVPlayerItem *playerItem;
+@property(nonatomic, strong, readonly) AVPlayerItem *playerItem DEPRECATED_MSG_ATTRIBUTE(
+    "Use playerVideoDisplay:didLoadPlayerItem: instead.");
 
 /**
  *  Allows the publisher to receive IMAAVPlayerVideoDisplay specific events.
  */
-@property(nonatomic, weak) id<IMAAVPlayerVideoDisplayDelegate> avPlayerVideoDisplayDelegate;
+@property(nonatomic, weak) id<IMAAVPlayerVideoDisplayDelegate> playerVideoDisplayDelegate;
 
 /**
  *  The subtitles for the current stream. Will be nil until the stream starts playing.

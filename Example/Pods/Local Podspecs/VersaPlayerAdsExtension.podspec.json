@@ -1,6 +1,6 @@
 {
   "name": "VersaPlayerAdsExtension",
-  "version": "0.5.1",
+  "version": "1.0.1",
   "summary": "VersaPlayer Extension to enable video ads.",
   "description": "VersaPlayer Extension to enable video ads functionality.",
   "homepage": "https://github.com/josejuanqm/VersaPlayerAdsExtension",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/josejuanqm/VersaPlayerAdsExtension.git",
-    "tag": "0.5.1"
+    "tag": "1.0.1"
   },
   "social_media_url": "https://twitter.com/josejuanqm",
   "platforms": {
@@ -28,5 +28,6 @@
 
     ]
   },
+  "swift_versions": "4",
   "swift_version": "4"
 }

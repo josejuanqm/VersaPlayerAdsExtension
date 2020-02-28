@@ -57,6 +57,14 @@
  */
 @property(nonatomic) BOOL adWillPlayMuted;
 
+
+/**
+ * Specifies whether the player intends to continuously play the content videos one after
+ * another similar to TV broadcast. Not calling this function leaves the setting as unknown.
+ * Note: Changing this setting will have no impact on ad playback.
+ */
+@property(nonatomic) BOOL continuousPlayback;
+
 /**
  *  Specifies the duration of the content in seconds to be shown. Used in AdX requests. This
  *  parameter is optional.
@@ -74,6 +82,14 @@
  *  optional.
  */
 @property(nonatomic, copy) NSString *contentTitle;
+
+/**
+ *  Specifies the universal link to the content's screen. If provided, this parameter is passed to
+ *  the OM SDK. See <a
+ *  href="//developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content">Apple
+ *  documentation</a> for more information.
+ */
+@property(nonatomic, copy) NSURL *contentURL;
 
 /**
  *  Specifies the VAST load timeout in milliseconds for the initial request and any subsequent
@@ -106,7 +122,7 @@
                  adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer
                avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay
               pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy
-                        userContext:(id)userContext;
+                        userContext:(id)userContext __TVOS_UNAVAILABLE;
 
 /**
  *  Initializes an ads request instance with the given canned ads response and ad display
@@ -144,7 +160,7 @@
               adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer
             avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay
            pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy
-                     userContext:(id)userContext;
+                     userContext:(id)userContext __TVOS_UNAVAILABLE;
 
 /**
  *  Initializes an ads request instance with the given ad tag URL and ad display

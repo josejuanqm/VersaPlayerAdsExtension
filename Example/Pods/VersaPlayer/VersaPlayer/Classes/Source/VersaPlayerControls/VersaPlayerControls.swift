@@ -14,16 +14,24 @@ import UIKit
 import AVFoundation
 import AVKit
 
+#if os(iOS)
+import MediaPlayer
+#endif
+
 open class VersaPlayerControls: View {
     
     /// VersaPlayer intance being controlled
-    public var handler: VersaPlayerView!
+    public weak var handler: VersaPlayerView!
     
     /// VersaPlayerControlsBehaviour being used to validate ui
     public var behaviour: VersaPlayerControlsBehaviour!
     
+    #if os(iOS)
+    public var airplayButton: MPVolumeView? = nil
+    #endif
+    
     /// VersaPlayerControlsCoordinator instance
-    public var controlsCoordinator: VersaPlayerControlsCoordinator!
+    public weak var controlsCoordinator: VersaPlayerControlsCoordinator!
     
     /// VersaStatefulButton instance to represent the play/pause button
     @IBOutlet public weak var playPauseButton: VersaStatefulButton? = nil
@@ -34,6 +42,9 @@ open class VersaPlayerControls: View {
     #if os(iOS)
     /// VersaStatefulButton instance to represent the PIP button
     @IBOutlet public weak var pipButton: VersaStatefulButton? = nil
+    
+    /// UIViewContainer to implement the airplay button
+    @IBOutlet public weak var airplayContainer: UIView? = nil
     #endif
     
     /// VersaStatefulButton instance to represent the rewind button
@@ -194,6 +205,12 @@ open class VersaPlayerControls: View {
             pipButton?.addTarget(self, action: #selector(togglePip), for: .touchUpInside)
         }
         
+        airplayButton = MPVolumeView()
+        airplayButton?.showsVolumeSlider = false
+        airplayContainer?.addSubview(airplayButton!)
+        airplayContainer?.clipsToBounds = false
+        airplayButton?.frame = airplayContainer?.bounds ?? CGRect.zero
+        
         seekbarSlider?.addTarget(self, action: #selector(playheadChanged(with:)), for: .valueChanged)
         seekbarSlider?.addTarget(self, action: #selector(seekingEnd), for: .touchUpInside)
         seekbarSlider?.addTarget(self, action: #selector(seekingEnd), for: .touchUpOutside)
@@ -232,29 +249,43 @@ open class VersaPlayerControls: View {
             bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
         }
     }
-    
+
+    /// Detect the notfication listener
+    private func checkOwnershipOf(object: Any?, completion: @autoclosure ()->()?) {
+      guard let ownerPlayer = object as? VersaPlayer else { return }
+      if ownerPlayer.isEqual(handler?.player) {
+        completion()
+      }
+    }
+
     /// Prepares the notification observers/listeners
     open func prepareNotificationListener() {
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.timeChanged.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            if let time = notification.userInfo?[VersaPlayer.VPlayerNotificationInfoKey.time.rawValue] as? CMTime {
-                self.timeDidChange(toTime: time)
-            }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.timeChanged.notification, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+        guard let self = self else { return }
+        if let time = notification.userInfo?[VersaPlayer.VPlayerNotificationInfoKey.time.rawValue] as? CMTime {
+          self.checkOwnershipOf(object: notification.object, completion: self.timeDidChange(toTime: time))
         }
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.didEnd.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            self.playPauseButton?.set(active: false)
-        }
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.play.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            self.playPauseButton?.set(active: true)
-        }
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.pause.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            self.playPauseButton?.set(active: false)
-        }
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.endBuffering.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            self.hideBuffering()
-        }
-        NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.buffering.notification, object: nil, queue: OperationQueue.main) { (notification) in
-            self.showBuffering()
-        }
+      }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.didEnd.notification, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+        guard let self = self else { return }
+        self.checkOwnershipOf(object: notification.object, completion: self.playPauseButton?.set(active: false))
+      }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.play.notification, object: nil, queue: OperationQueue.main) { [weak self]  (notification) in
+        guard let self = self else { return }
+        self.checkOwnershipOf(object: notification.object, completion: self.playPauseButton?.set(active: true))
+      }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.pause.notification, object: nil, queue: OperationQueue.main) {[weak self] (notification) in
+        guard let self = self else { return }
+        self.checkOwnershipOf(object: notification.object, completion: self.playPauseButton?.set(active: false))
+      }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.endBuffering.notification, object: nil, queue: OperationQueue.main) {[weak self] (notification) in
+        guard let self = self else { return }
+        self.checkOwnershipOf(object: notification.object, completion: self.hideBuffering())
+      }
+      NotificationCenter.default.addObserver(forName: VersaPlayer.VPlayerNotificationName.buffering.notification, object: nil, queue: OperationQueue.main) {[weak self] (notification) in
+        guard let self = self else { return }
+        self.checkOwnershipOf(object: notification.object, completion: self.showBuffering())
+      }
     }
     
     /// Prepare the seekbar values
@@ -307,6 +338,7 @@ open class VersaPlayerControls: View {
     /// - Parameters:
     ///     - sender: NSSlider that updated
     @IBAction open func playheadChanged(with sender: NSSlider) {
+        handler.isSeeking = true
         let value = sender.doubleValue
         let time = CMTime(seconds: value, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         handler.player.seek(to: time)
@@ -320,6 +352,7 @@ open class VersaPlayerControls: View {
     /// - Parameters:
     ///     - sender: UISlider that updated
     @IBAction open func playheadChanged(with sender: UISlider) {
+        handler.isSeeking = true
         let value = Double(sender.value)
         let time = CMTime(seconds: value, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         handler.player.seek(to: time)

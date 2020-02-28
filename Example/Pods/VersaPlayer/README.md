@@ -3,6 +3,11 @@
 [![License](https://img.shields.io/cocoapods/l/VersaPlayer.svg?style=flat)](https://cocoapods.org/pods/VersaPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/VersaPlayer.svg?style=flat)](https://cocoapods.org/pods/VersaPlayer)
 
+### News
+##### :tada: - Since 2.1.3 VersaPlayer now supports iOS, macOS, and tvOS
+
+---
+
 <div>
   <p align="center">
     <img src="https://github.com/josejuanqm/VersaPlayer/blob/master/Image.png" />
@@ -109,6 +114,14 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'VersaPlayer'
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "josejuanqm/VersaPlayer" "3.0.0"
 ```
 
 ## Usage
@@ -277,6 +290,8 @@ People that make VersaPlayer possible, Thank you!
 
 <span><a href="https://github.com/josejuanqm"><img src="https://github.com/josejuanqm.png" alt="josejuanqm" width="50px"></a></span>
 <span><a href="https://github.com/pbeast"><img src="https://github.com/pbeast.png" alt="pbeast" width="50px"></a></span>
+<span><a href="https://github.com/danibachar"><img src="https://github.com/danibachar.png" alt="danibachar" width="50px"></a></span>
+<span><a href="https://github.com/HuseyinVural"><img src="https://github.com/HuseyinVural.png" alt="HuseyinVural" width="50px"></a></span>
 
 ## Donation
 

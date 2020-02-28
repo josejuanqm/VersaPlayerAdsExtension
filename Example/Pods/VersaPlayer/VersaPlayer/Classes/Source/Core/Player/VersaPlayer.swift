@@ -36,7 +36,7 @@ open class VersaPlayer: AVPlayer, AVAssetResourceLoaderDelegate {
     }
     
     /// VersaPlayer instance
-    public var handler: VersaPlayerView!
+    public weak var handler: VersaPlayerView!
     
     /// Caption text style rules
     lazy public var captionStyling: VersaPlayerCaptionStyling = {
@@ -49,6 +49,7 @@ open class VersaPlayer: AVPlayer, AVAssetResourceLoaderDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemTimeJumped, object: self)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self)
+        removeObserver(self, forKeyPath: "status")
     }
     
     /// Play content
@@ -65,8 +66,10 @@ open class VersaPlayer: AVPlayer, AVAssetResourceLoaderDelegate {
     
     /// Pause content
     override open func pause() {
+        handler.playbackDelegate?.playbackWillPause(player: self)
         NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.pause.notification, object: self, userInfo: nil)
         super.pause()
+        handler.playbackDelegate?.playbackDidPause(player: self)
     }
     
     /// Replace current item with a new one
@@ -87,11 +90,11 @@ open class VersaPlayer: AVPlayer, AVAssetResourceLoaderDelegate {
         
         super.replaceCurrentItem(with: item)
         NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.assetLoaded.notification, object: self, userInfo: nil)
-        if item != nil {
-            currentItem!.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
-            currentItem!.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
-            currentItem!.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
-            currentItem!.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+        if let newItem = currentItem ?? item {
+            newItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+            newItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+            newItem.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+            newItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         }
     }
     
@@ -135,30 +138,33 @@ extension VersaPlayer {
     
     /// Prepare players playback delegate observers
     open func preparePlayerPlaybackDelegate() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.main) { (notification) in
-            NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.didEnd.notification, object: self, userInfo: nil)
-            self.handler.playbackDelegate?.playbackDidEnd(player: self)
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemTimeJumped, object: self, queue: OperationQueue.main) { (notification) in
-            self.handler.playbackDelegate?.playbackDidJump(player: self)
-        }
-        addPeriodicTimeObserver(
-            forInterval: CMTime(
-                seconds: 1,
-                preferredTimescale: CMTimeScale(NSEC_PER_SEC)
-            ),
-            queue: DispatchQueue.main) { (time) in
-                NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.timeChanged.notification, object: self, userInfo: [VPlayerNotificationInfoKey.time.rawValue: time])
-                self.handler.playbackDelegate?.timeDidChange(player: self, to: time)
-                
-        }
-        addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
+      NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+        guard let self = self else { return }
+        NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.didEnd.notification, object: self, userInfo: nil)
+        self.handler?.playbackDelegate?.playbackDidEnd(player: self)
+      }
+      NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemTimeJumped, object: self, queue: OperationQueue.main) { [weak self] (notification) in
+        guard let self = self else { return }
+        self.handler?.playbackDelegate?.playbackDidJump(player: self)
+      }
+      addPeriodicTimeObserver(
+        forInterval: CMTime(
+          seconds: 1,
+          preferredTimescale: CMTimeScale(NSEC_PER_SEC)
+        ),
+        queue: DispatchQueue.main) { [weak self] (time) in
+          guard let self = self else { return }
+          NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.timeChanged.notification, object: self, userInfo: [VPlayerNotificationInfoKey.time.rawValue: time])
+          self.handler?.playbackDelegate?.timeDidChange(player: self, to: time)
+      }
+
+      addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     /// Value observer
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let obj = object as? VersaPlayer, obj == self {
-            if keyPath == "status" {
+            if keyPath == "status" && handler != nil {
                 switch status {
                 case AVPlayer.Status.readyToPlay:
                     handler.playbackDelegate?.playbackReady(player: self)
@@ -173,7 +179,7 @@ extension VersaPlayer {
             case "status":
                 if let value = change?[.newKey] as? Int, let status = AVPlayerItem.Status(rawValue: value), let item = object as? AVPlayerItem {
                     if status == .failed, let error = item.error as NSError?, let underlyingError = error.userInfo[NSUnderlyingErrorKey] as? NSError {
-                        var playbackError = VersaPlayerPlaybackError.unknown
+                        let playbackError: VersaPlayerPlaybackError
                         switch underlyingError.code {
                         case -12937:
                             playbackError = .authenticationError
@@ -191,6 +197,10 @@ extension VersaPlayer {
                             playbackError = .bandwidthExceeded
                         case -12642:
                             playbackError = .playlistUnchanged
+                        case -12911:
+                            playbackError = .decoderMalfunction
+                        case -12913:
+                            playbackError = .decoderTemporarilyUnavailable
                         case -1004:
                             playbackError = .wrongHostIP
                         case -1003:
@@ -204,11 +214,15 @@ extension VersaPlayer {
                         }
                         handler.playbackDelegate?.playbackDidFailed(with: playbackError)
                     }
+
+                    if status == .readyToPlay, let currentItem = self.currentItem as? VersaPlayerItem {
+                      handler.playbackDelegate?.playbackItemReady(player: self, item: currentItem)
+                    }
                 }
             case "playbackBufferEmpty":
                 isBuffering = true
                 NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.buffering.notification, object: self, userInfo: nil)
-                handler.playbackDelegate?.startBuffering(layer: self)
+                handler.playbackDelegate?.startBuffering(player: self)
             case "playbackLikelyToKeepUp":
                 isBuffering = false
                 NotificationCenter.default.post(name: VersaPlayer.VPlayerNotificationName.endBuffering.notification, object: self, userInfo: nil)

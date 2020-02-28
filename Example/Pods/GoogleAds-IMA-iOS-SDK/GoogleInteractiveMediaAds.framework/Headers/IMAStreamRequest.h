@@ -38,7 +38,6 @@
  *  The stream request authorization token. This is used in place of the API key for stricter
  *  content authorization. The publisher can control individual content streams authorized based
  *  on this token.
- *  :nodoc:
  */
 @property(nonatomic, copy) NSString *authToken;
 
@@ -57,7 +56,7 @@
  *  See <a href="//support.google.com/dfp_premium/answer/7320898">
  *  Override Stream Variant Parameters</a> for more information.
  */
-@property(nonatomic, copy) NSDictionary *adTagParameters;
+@property(nonatomic, copy) NSDictionary<NSString *, NSString *> *adTagParameters;
 
 /**
  *  The suffix that the SDK will append to the query of the stream manifest URL. Do not include the
@@ -66,6 +65,14 @@
  *  sanitized and encoded as the SDK will not do this.
  */
 @property(nonatomic, copy) NSString *manifestURLSuffix;
+
+/**
+ *  Specifies the universal link to the content's screen. If provided, this parameter is passed to
+ *  the OM SDK. See <a
+ *  href="//developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content">Apple
+ *  documentation</a> for more information.
+ */
+@property(nonatomic, copy) NSURL *contentURL;
 
 /**
  * :nodoc:

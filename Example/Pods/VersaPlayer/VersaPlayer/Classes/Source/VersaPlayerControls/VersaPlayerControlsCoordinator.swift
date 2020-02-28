@@ -17,14 +17,18 @@ import AVFoundation
 open class VersaPlayerControlsCoordinator: View, VersaPlayerGestureRecieverViewDelegate {
 
     /// VersaPlayer instance being used
-    var player: VersaPlayerView!
+    weak var player: VersaPlayerView!
     
     /// VersaPlayerControls instance being used
-    public var controls: VersaPlayerControls!
+    weak public var controls: VersaPlayerControls!
     
     /// VersaPlayerGestureRecieverView instance being used
     public var gestureReciever: VersaPlayerGestureRecieverView!
-    
+
+    deinit {
+        
+    }
+
     #if os(macOS)
     
     override open func viewDidMoveToSuperview() {
@@ -64,7 +68,7 @@ open class VersaPlayerControlsCoordinator: View, VersaPlayerGestureRecieverViewD
                 addSubview(gestureReciever, positioned: NSWindow.OrderingMode.below, relativeTo: nil)
                 #else
                 addSubview(gestureReciever)
-                sendSubview(toBack: gestureReciever)
+                sendSubviewToBack(gestureReciever)
                 #endif
             }
             stretchToEdges()
@@ -106,10 +110,10 @@ open class VersaPlayerControlsCoordinator: View, VersaPlayerGestureRecieverViewD
     /// - Parameters:
     ///     - point: CGPoint at which tap was recognized
     open func didDoubleTap(at point: CGPoint) {
-        if player.renderingView.renderingLayer.playerLayer.videoGravity == AVLayerVideoGravity.resizeAspect {
-            player.renderingView.renderingLayer.playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        if player.renderingView.playerLayer.videoGravity == AVLayerVideoGravity.resizeAspect {
+            player.renderingView.playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         }else {
-            player.renderingView.renderingLayer.playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+            player.renderingView.playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         }
     }
     
