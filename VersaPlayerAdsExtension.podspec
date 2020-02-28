@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.source_files = 'VersaPlayerAdsExtension/Classes/**/*'
   s.dependency 'VersaPlayer'
   s.dependency 'GoogleAds-IMA-iOS-SDK'
-  s.swift_version = '4'
+  s.swift_version = '5'
 end
