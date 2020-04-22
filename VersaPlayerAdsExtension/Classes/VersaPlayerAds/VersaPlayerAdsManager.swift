@@ -12,7 +12,6 @@ import VersaPlayer
 
 public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, IMAAdsManagerDelegate {
 
-    public var controller: UIViewController!
     public var behaviour: VersaPlayerAdManagerBehaviour!
     public var contentPlayhead: IMAAVPlayerContentPlayhead?
     public var pipProxy: IMAPictureInPictureProxy?
@@ -23,11 +22,10 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var showingAds: Bool = false
     public var adsRenderingSettings: IMAAdsRenderingSettings!
     
-    public init(with player: VersaPlayerView, presentingIn controller: UIViewController, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
+    public init(with player: VersaPlayerView, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
         super.init(with: player)
         self.behaviour = VersaPlayerAdManagerBehaviour()
         self.behaviour.handler = self
-        self.controller = controller
         self.displayDelegate = delegate
         setUpContentPlayer()
         setUpAdsLoader()

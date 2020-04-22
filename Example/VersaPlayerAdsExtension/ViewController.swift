@@ -17,7 +17,7 @@ class ViewController: UIViewController, VersaPlayerAdManagerBehaviourDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        player.useAds(manager: VersaPlayerAdsManager.init(with: player, presentingIn: self))
+        player.useAds(manager: VersaPlayerAdsManager.init(with: player))
         player.adsManager?.behaviour.delegate = self
         if let url = URL.init(string: "http://rmcdn.2mdn.net/Demo/html5/output.mp4") {
             let item = VersaPlayerItem(url: url)
