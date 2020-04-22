@@ -48,6 +48,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func requestAds(using pip: Bool = false) {
+        guard let player = player else { return }
         let adDisplayContainer = IMAAdDisplayContainer(adContainer: player.renderingView, companionSlots: self.adsManager == nil ? nil : displayDelegate?.companionSlots(for: self.adsManager!))
         var request: IMAAdsRequest
         if !pip {
@@ -88,6 +89,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
 
     public func setUpContentPlayer() {
+        guard let player = player else { return }
         displayDelegate?.willSetUpContentPlayer()
         contentPlayhead = IMAAVPlayerContentPlayhead(avPlayer: player.player)
         NotificationCenter.default.addObserver(
@@ -100,7 +102,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
 
     @objc public func contentDidFinishPlaying(notification: NSNotification) {
         if let obj = notification.object as? AVPlayerItem {
-            if obj == player.player.currentItem {
+            if obj == player?.player.currentItem {
                 adsLoader?.contentComplete()
             }else if showingAds {
                 displayDelegate?.adsDidFinishPlaying()
@@ -111,6 +113,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
+        guard let player = player else { return }
         displayDelegate?.ads(manager: adsManager, didReceiveEvent: event)
         if displayDelegate?.shouldAutoPlayAds() ?? true {
             if (event.type == IMAAdEventType.LOADED) {
@@ -123,18 +126,18 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
         displayDelegate?.ads(manager: adsManager, didReceiveError: error)
-        player.play()
+        player?.play()
     }
     
     public func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!) {
         displayDelegate?.adsManagerDidRequestContentPause(adsManager)
-        player.pause()
+        player?.pause()
     }
     
     public func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!) {
         displayDelegate?.adsManagerDidRequestContentResume(adsManager)
-        if !player.isPlaying {
-            player.play()
+        if player?.isPlaying == false {
+            player?.play()
         }
     }
     

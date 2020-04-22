@@ -24,12 +24,12 @@ public class VersaPlayerAdManagerBehaviour {
     }
     
     public func willShowAdsFor(player: VersaPlayer) {
-        self.handler.player.controls?.controlsCoordinator.isHidden = true
+        self.handler.player?.controls?.controlsCoordinator.isHidden = true
         delegate?.willShowAdsFor(player: player)
     }
     
     public func didEndAd() {
-        self.handler.player.controls?.controlsCoordinator.isHidden = false
+        self.handler.player?.controls?.controlsCoordinator.isHidden = false
     }
     
 }
