@@ -17,7 +17,7 @@ public class VersaPlayerAdManagerBehaviour {
             configure()
         }
     }
-    public var delegate: VersaPlayerAdManagerBehaviourDelegate? = nil
+    public weak var delegate: VersaPlayerAdManagerBehaviourDelegate? = nil
     
     public func configure() {
         
