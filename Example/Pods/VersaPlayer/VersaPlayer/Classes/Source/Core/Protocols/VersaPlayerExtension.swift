@@ -11,7 +11,7 @@ import Foundation
 open class VersaPlayerExtension: NSObject {
     
     /// VersaPlayer instance being used
-    open var player: VersaPlayerView
+    open weak var player: VersaPlayerView?
     
     public init(with player: VersaPlayerView) {
         self.player = player

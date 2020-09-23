@@ -21,12 +21,14 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     public var tag: String!
     public var showingAds: Bool = false
     public var adsRenderingSettings: IMAAdsRenderingSettings!
+    private weak var viewController: UIViewController!
     
-    public init(with player: VersaPlayerView, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil) {
+    public init(with player: VersaPlayerView, and delegate: VersaPlayerAdsManagerDisplayDelegate? = nil, on viewController: UIViewController) {
         super.init(with: player)
         self.behaviour = VersaPlayerAdManagerBehaviour()
         self.behaviour.handler = self
         self.displayDelegate = delegate
+        self.viewController = viewController
         setUpContentPlayer()
         setUpAdsLoader()
         player.addObserver(self, forKeyPath: "isPipModeEnabled", options: NSKeyValueObservingOptions.new, context: nil)
@@ -49,7 +51,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
     
     public func requestAds(using pip: Bool = false) {
         guard let player = player else { return }
-        let adDisplayContainer = IMAAdDisplayContainer(adContainer: player.renderingView, companionSlots: self.adsManager == nil ? nil : displayDelegate?.companionSlots(for: self.adsManager!))
+        let adDisplayContainer = IMAAdDisplayContainer(adContainer: player.renderingView, viewController: viewController, companionSlots: self.adsManager == nil ? nil : displayDelegate?.companionSlots(for: self.adsManager!))
         var request: IMAAdsRequest
         if !pip {
             request = IMAAdsRequest(
