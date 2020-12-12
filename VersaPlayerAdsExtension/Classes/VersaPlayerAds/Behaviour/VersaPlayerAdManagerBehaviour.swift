@@ -30,6 +30,7 @@ public class VersaPlayerAdManagerBehaviour {
     
     public func didEndAd() {
         self.handler.player?.controls?.controlsCoordinator.isHidden = false
+        delegate?.didEndAd()
     }
     
 }

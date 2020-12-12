@@ -11,4 +11,5 @@ import VersaPlayer
 
 public protocol VersaPlayerAdManagerBehaviourDelegate: class {
     func willShowAdsFor(player: VersaPlayer)
+    func didEndAd()
 }

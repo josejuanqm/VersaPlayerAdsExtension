@@ -11,7 +11,7 @@ import GoogleInteractiveMediaAds
 import VersaPlayer
 
 public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, IMAAdsManagerDelegate {
-
+    
     public var behaviour: VersaPlayerAdManagerBehaviour!
     public var contentPlayhead: IMAAVPlayerContentPlayhead?
     public var pipProxy: IMAPictureInPictureProxy?
@@ -89,7 +89,7 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
         displayDelegate?.ads(loader: loader, failedWith: adErrorData)
         print(adErrorData.adError.message)
     }
-
+    
     public func setUpContentPlayer() {
         guard let player = player else { return }
         displayDelegate?.willSetUpContentPlayer()
@@ -101,28 +101,31 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
             object: player.player.currentItem
         )
     }
-
+    
     @objc public func contentDidFinishPlaying(notification: NSNotification) {
-        if let obj = notification.object as? AVPlayerItem {
-            if obj == player?.player.currentItem {
-                adsLoader?.contentComplete()
-            }else if showingAds {
-                displayDelegate?.adsDidFinishPlaying()
-                showingAds = false
-                behaviour.didEndAd()
-            }
-        }
+        guard let obj = notification.object as? AVPlayerItem, obj == player?.player.currentItem else { return }
+        adsLoader?.contentComplete()
     }
     
     public func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
         guard let player = player else { return }
         displayDelegate?.ads(manager: adsManager, didReceiveEvent: event)
-        if displayDelegate?.shouldAutoPlayAds() ?? true {
-            if (event.type == IMAAdEventType.LOADED) {
+        switch event.type {
+        case .LOADED:
+            if displayDelegate?.shouldAutoPlayAds() ?? true {
                 showingAds = true
                 behaviour.willShowAdsFor(player: player.player)
                 adsManager.start()
             }
+        case .STARTED:
+            showingAds = true
+            behaviour.willShowAdsFor(player: player.player)
+            adsManager.start()
+        case .SKIPPED, .COMPLETE:
+            displayDelegate?.adsDidFinishPlaying()
+            showingAds = false
+            behaviour.didEndAd()
+        default: break
         }
     }
     
