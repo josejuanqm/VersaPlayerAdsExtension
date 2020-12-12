@@ -113,14 +113,11 @@ public class VersaPlayerAdsManager: VersaPlayerExtension, IMAAdsLoaderDelegate, 
         switch event.type {
         case .LOADED:
             if displayDelegate?.shouldAutoPlayAds() ?? true {
-                showingAds = true
-                behaviour.willShowAdsFor(player: player.player)
                 adsManager.start()
             }
         case .STARTED:
             showingAds = true
             behaviour.willShowAdsFor(player: player.player)
-            adsManager.start()
         case .SKIPPED, .COMPLETE:
             displayDelegate?.adsDidFinishPlaying()
             showingAds = false
